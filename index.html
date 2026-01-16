@@ -52,29 +52,76 @@
   </button>
 </nav>
 
-<!-- Mobile Menu (Slide-in dari kanan) -->
+<!-- Overlay Background -->
+<div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"></div>
+
+<!-- Mobile Menu (Slide-in dari kanan dengan animasi item) -->
 <div id="mobile-menu"
-     class="fixed top-0 right-0 h-full w-1/2 bg-blue-50 glass-card bg-opacity-95 transform translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col items-start p-8 space-y-6 md:hidden">
-  <a href="#home" class="nav-link text-blue-600 font-semibold">Beranda</a>
-  <a href="#about" class="nav-link text-blue-600 font-semibold">Tentang Kami</a>
-  <a href="#why" class="nav-link text-blue-600 font-semibold">Keunggulan</a>
-  <a href="#cars" class="nav-link text-blue-600 font-semibold">Armada</a>
-  <a href="#testimoni" class="nav-link text-blue-600 font-semibold">Testimoni</a>
-  <a href="#contact" class="nav-link text-blue-600 font-semibold">Kontak</a>
-  <a href="https://wa.me/628123456789" class="btn-luxury px-6 py-2 rounded-full text-xs mt-4">
+     class="fixed top-0 right-0 h-full w-2/3 max-w-xs bg-white glass-card shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col pt-24 px-6 space-y-6 md:hidden">
+  <a href="#home" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Beranda</a>
+  <a href="#about" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Tentang Kami</a>
+  <a href="#why" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Keunggulan</a>
+  <a href="#cars" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Armada</a>
+  <a href="#testimoni" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Testimoni</a>
+  <a href="#contact" class="mobile-link text-blue-600 font-semibold opacity-0 translate-x-4">Kontak</a>
+  <a href="https://wa.me/628123456789" class="btn-luxury px-6 py-2 rounded-full text-xs mt-4 opacity-0 translate-x-4">
     BOOK NOW
   </a>
 </div>
 
-<!-- JS Toggle Mobile Menu -->
+<!-- JS Toggle Mobile Menu dengan animasi item -->
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+function openMenu() {
+  mobileMenu.classList.remove('translate-x-full');
+  menuOverlay.classList.remove('hidden');
+
+  // Animasi item satu per satu
+  mobileLinks.forEach((link, index) => {
+    link.style.transition = `all 0.3s ease ${(index + 1) * 0.1}s`;
+    link.classList.remove('opacity-0', 'translate-x-4');
+  });
+}
+
+function closeMenu() {
+  // Animasi balik
+  mobileLinks.forEach((link, index) => {
+    link.style.transition = `all 0.2s ease ${(mobileLinks.length - index) * 0.05}s`;
+    link.classList.add('opacity-0', 'translate-x-4');
+  });
+
+  // Setelah animasi selesai, sembunyikan menu
+  setTimeout(() => {
+    mobileMenu.classList.add('translate-x-full');
+    menuOverlay.classList.add('hidden');
+  }, 300);
+}
 
 menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('translate-x-full'); // toggle slide
+  if (mobileMenu.classList.contains('translate-x-full')) {
+    openMenu();
+  } else {
+    closeMenu();
+  }
 });
+
+menuOverlay.addEventListener('click', closeMenu);
 </script>
+
+<style>
+/* Tailwind helper untuk transform awal */
+.translate-x-4 {
+  transform: translateX(1rem);
+}
+.opacity-0 {
+  opacity: 0;
+}
+</style>
+
 
 <!-- Mobile Menu -->
 <div id="mobile-menu"
@@ -486,5 +533,6 @@ menuBtn.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
