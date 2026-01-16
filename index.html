@@ -452,6 +452,17 @@
 
 <!-- LOCAL JS -->
 <script src="script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('menu-btn');       // tombol hamburger
+    const menu = document.getElementById('mobile-menu');  // menu mobile
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden'); // toggle show/hide
+    });
+  });
+</script>
 
 </body>
 </html>
+
