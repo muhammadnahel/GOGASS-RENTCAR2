@@ -23,37 +23,58 @@
 
 <body class="bg-pattern">
 
-<!-- Navigation -->
-<nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass-card border-none rounded-none bg-opacity-90">
-    
-    <!-- Logo -->
-    <div class="flex items-center">
-        <img src="https://i.imgur.com/6oLkKT7.png" alt="Logo GOGASS RENTCAR"
-             class="h-10 sm:h-12 md:h-16 lg:h-20">
-    </div>
+<!-- Navbar -->
+<nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass-card bg-opacity-90">
+  <!-- Logo -->
+  <div class="flex items-center">
+    <img src="https://i.imgur.com/6oLkKT7.png" alt="Logo GOGASS RENTCAR" class="h-10 sm:h-12 md:h-16 lg:h-20">
+  </div>
 
-    <!-- Menu Desktop -->
-    <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-semibold">
-        <a href="#home" class="nav-link">Beranda</a>
-        <a href="#about" class="nav-link">Tentang Kami</a>
-        <a href="#why" class="nav-link">Keunggulan</a>
-        <a href="#cars" class="nav-link">Armada</a>
-        <a href="#cars" class="nav-link">Testimoni</a>
-        <a href="#contact" class="nav-link">Kontak</a>
-    </div>
+  <!-- Menu Desktop -->
+  <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-semibold text-blue-600">
+    <a href="#home" class="nav-link">Beranda</a>
+    <a href="#about" class="nav-link">Tentang Kami</a>
+    <a href="#why" class="nav-link">Keunggulan</a>
+    <a href="#cars" class="nav-link">Armada</a>
+    <a href="#testimoni" class="nav-link">Testimoni</a>
+    <a href="#contact" class="nav-link">Kontak</a>
+  </div>
 
-    <!-- Hamburger Button (Mobile) -->
-    <button id="menu-btn"
-        class="md:hidden text-3xl text-blue-600 focus:outline-none">
-        ☰
-    </button>
+  <!-- Tombol Desktop -->
+  <a href="https://wa.me/628123456789" target="_blank"
+     class="hidden md:inline-block btn-luxury px-6 py-2 rounded-full text-xs">
+    BOOK NOW
+  </a>
 
-    <!-- Button Desktop -->
-    <a href="https://wa.me/628123456789" target="_blank"
-       class="hidden md:inline-block btn-luxury px-6 py-2 rounded-full text-xs">
-        BOOK NOW
-    </a>
+  <!-- Hamburger Button (Mobile) -->
+  <button id="menu-btn" class="md:hidden text-3xl text-blue-600 focus:outline-none">
+    ☰
+  </button>
 </nav>
+
+<!-- Mobile Menu (Slide-in dari kanan) -->
+<div id="mobile-menu"
+     class="fixed top-0 right-0 h-full w-1/2 bg-blue-50 glass-card bg-opacity-95 transform translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col items-start p-8 space-y-6 md:hidden">
+  <a href="#home" class="nav-link text-blue-600 font-semibold">Beranda</a>
+  <a href="#about" class="nav-link text-blue-600 font-semibold">Tentang Kami</a>
+  <a href="#why" class="nav-link text-blue-600 font-semibold">Keunggulan</a>
+  <a href="#cars" class="nav-link text-blue-600 font-semibold">Armada</a>
+  <a href="#testimoni" class="nav-link text-blue-600 font-semibold">Testimoni</a>
+  <a href="#contact" class="nav-link text-blue-600 font-semibold">Kontak</a>
+  <a href="https://wa.me/628123456789" class="btn-luxury px-6 py-2 rounded-full text-xs mt-4">
+    BOOK NOW
+  </a>
+</div>
+
+<!-- JS Toggle Mobile Menu -->
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('translate-x-full'); // toggle slide
+});
+</script>
 
 <!-- Mobile Menu -->
 <div id="mobile-menu"
@@ -465,4 +486,5 @@
 
 </body>
 </html>
+
 
